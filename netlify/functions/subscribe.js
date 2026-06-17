@@ -13,10 +13,11 @@ exports.handler = async function(event) {
         'Authorization': 'Basic ' + Buffer.from(FLODESK_API_KEY + ':').toString('base64'),
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email, segments })
+      body: JSON.stringify({ email, segment_ids: segments })
     });
 
     const data = await response.json();
+    console.log('Flodesk response:', JSON.stringify(data));
 
     return {
       statusCode: response.ok ? 200 : response.status,
